@@ -1,0 +1,198 @@
+<ion-header class="ttttt">
+  <ion-toolbar >
+
+    <ion-title>Meus Orçamentos</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="contentpage">
+    <div padding>
+      <ion-segment color="danger" [(ngModel)]="pet">
+        <ion-segment-button (ionSelect)="getOrcRes()" value="kittens">
+          Respondidos
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="getOrcAber()" value="puppies">
+          Pendentes
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="getAllOrc()" value="fim">
+          Todos
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="getPedidosFinal()" value="aceitos">
+          Aceitos
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'puppies'">
+        <div class="titgetorc">
+          Pedidos pendentes
+          <div *ngIf="!pedidosa" class="loader loader--style3" title="2">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+                />
+              </path>
+            </svg>
+          </div>
+        </div>
+        <ion-list>
+          <ion-item (click)="viewSolic(item)" *ngFor="let item of pedidosa let i = index">
+            <ion-thumbnail item-end>
+              <img src="assets/pendente.png">
+            </ion-thumbnail>
+
+            <h3 class="titulolist">{{i+1}}. {{item.nome_servico}} </h3>
+
+            <ion-row class="detalhescols">
+              <ion-col>
+                Status:
+                <span class="statusaccept">Aceito</span>
+              </ion-col>
+              <ion-col>
+                Data:
+                <span class="statusaccept">{{item.data | date: 'dd/MM/yyyy'}}</span>
+              </ion-col>
+
+              <ion-col>
+
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'kittens'">
+        <div class="titgetorc">
+          Pedidos respondidos
+          <div *ngIf="!pedidosr" class="loader loader--style3" title="2">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+                />
+              </path>
+            </svg>
+          </div>
+        </div>
+        <ion-list>
+          <ion-item (click)="viewSolic(item)" *ngFor="let item of pedidosr let i = index">
+            <ion-thumbnail item-end>
+              <img src="assets/recebido.png">
+            </ion-thumbnail>
+
+            <h3 class="titulolist">{{i+1}}. {{item.nome_servico}} </h3>
+
+            <ion-row class="detalhescols">
+              <ion-col>
+                Status:
+                <span class="statusaccept">Aceito</span>
+              </ion-col>
+              <ion-col>
+                Data:
+                <span class="statusaccept">{{item.data | date: 'dd/MM/yyyy'}}</span>
+              </ion-col>
+
+              <ion-col>
+
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+
+
+      </ion-list>
+
+
+
+      <ion-list *ngSwitchCase="'fim'">
+        <div class="titgetorc">
+          Todos
+          <div *ngIf="!pedidos" class="loader loader--style3" title="2">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+                />
+              </path>
+            </svg>
+          </div>
+        </div>
+
+
+        <ion-list>
+          <ion-item (click)="viewSolic(item)" *ngFor="let item of pedidos let i = index">
+            <ion-thumbnail item-end>
+              <img src="assets/recebido.png">
+            </ion-thumbnail>
+
+            <h3 class="titulolist">{{i+1}}. {{item.nome_servico}} </h3>
+
+            <ion-row class="detalhescols">
+              <ion-col>
+                Status:
+                <span class="statusaccept">Aceito</span>
+              </ion-col>
+              <ion-col>
+                Data:
+                <span class="statusaccept">{{item.data | date: 'dd/MM/yyyy'}}</span>
+              </ion-col>
+
+              <ion-col>
+
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+
+
+      <ion-list *ngSwitchCase="'aceitos'">
+        <div class="titgetorc">
+          Aceitos
+          <!-- 3  -->
+          <div *ngIf="!pedidosf" class="loader loader--style3" title="2">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+                />
+              </path>
+            </svg>
+          </div>
+
+        </div>
+        <ion-list>
+          <ion-item (click)="openPedido(item)" *ngFor="let item of pedidosf let i = index">
+            <ion-thumbnail item-end>
+              <img src="assets/checkeds.png">
+            </ion-thumbnail>
+
+            <h3 class="titulolist">{{i+1}}. {{item.nome}} </h3>
+
+            <ion-row class="detalhescols">
+              <ion-col>
+                Status:
+                <span class="statusaccept">Aceito</span>
+              </ion-col>
+              <ion-col>
+                Data:
+                <span class="statusaccept">{{item.data | date: 'dd/MM/yyyy'}}</span>
+              </ion-col>
+
+              <ion-col>
+
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+
+
+
+    </div>
+  </div>
+</ion-content>

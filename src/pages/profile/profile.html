@@ -1,0 +1,114 @@
+<ion-header>
+
+</ion-header>
+<ion-content class="content">
+  <!-- <p (click)="editarimg()" class="bteditimg">Editar</p> -->
+  <div class="headerprof">
+
+    <div class="infoprofile">
+      <h2>{{dadosUser[0].nome}}</h2>
+      <p>{{dadosUser[0].email}}</p>
+
+    </div>
+
+    <div class="circle">
+      <img class="destaquecat" src="assets/avatar.jpg" alt="">
+      <!-- <img *ngIf="!imglist[0]"  src="{{dadosUser.img}}" alt=""> -->
+      <!-- <img *ngIf="imglist[0]"  class=""  src="{{base64Image}}" alt=""> -->
+    </div>
+
+    <div class="starreputtit">
+      <p>Reputação</p>
+
+
+    </div>
+    <div class="starreput">
+      <rating [(ngModel)]="rate" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+        nullable="true">
+      </rating>
+
+    </div>
+    <p *ngIf="rate>4 && rate<5" class="resultrep">Ótima</p>
+    <p *ngIf="rate>3 && rate<4" class="resultrep">Boa</p>
+    <p *ngIf="rate>2 && rate<3" class="resultrep">Regular</p>
+    <p *ngIf="rate>0 && rate<2" class="resultrep">Ruim</p>
+    <p *ngIf="rate==0" class="resultrep">Novo</p>
+
+  </div>
+  <ion-row class="boxinfo">
+    <ion-col class="boxcont" col-4>
+      <p class="titulototal">Pendentes</p>
+      <div *ngIf="statusorcs" class="loader loader--style3" title="2">
+        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="50px" height="50px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+            />
+          </path>
+        </svg>
+      </div>
+      <p class="numtotal">{{countorcs}}</p>
+
+    </ion-col>
+    <ion-col class="boxcont2" col-4>
+      <p class="titulototal"> Concluído</p>
+      <div *ngIf="statusfinal" class="loader loader--style3" title="2">
+        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="50px" height="50px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+            />
+          </path>
+        </svg>
+      </div>
+      <p class="numtotal">{{countf}}</p>
+    </ion-col>
+    <ion-col col-4 class="boxcont3">
+      <p class="titulototal"> Solicitados</p>
+      <div *ngIf="!countpend" class="loader loader--style3" title="2">
+        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="50px" height="50px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"
+            />
+          </path>
+        </svg>
+      </div>
+      <p class="numtotal">{{countpend}}</p>
+    </ion-col>
+
+  </ion-row>
+
+  <button (click)="share()" ion-item>
+    <ion-icon name="ios-share-outline" item-start></ion-icon>
+    <p>Compartilhar</p>
+  </button>
+
+  <button (click)="alterDados()" ion-item>
+    <ion-icon name="ios-list" item-start></ion-icon>
+    <p>Meus Dados</p>
+  </button>
+    <button (click)="updatePass()" ion-item>
+      <ion-icon name="ios-list-box-outline" item-start></ion-icon>
+      <p>Meus serviços</p>
+    </button>
+  <button (click)="updatePass()" ion-item>
+    <ion-icon name="ios-unlock-outline" item-start></ion-icon>
+    <p>Alterar Senha</p>
+  </button>
+
+  <button ion-item>
+    <ion-icon name="ios-bookmarks-outline" item-start></ion-icon>
+    <p>Como funciona</p>
+  </button>
+
+  <button ion-item>
+    <ion-icon name="ios-help-circle-outline" item-start></ion-icon>
+    <p>Ajuda</p>
+  </button>
+
+  <button (click)="exit()" ion-item>
+    <ion-icon name="ios-exit-outline" item-start></ion-icon>
+    <p>Sair</p>
+  </button>
+</ion-content>

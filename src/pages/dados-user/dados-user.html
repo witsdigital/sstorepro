@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="orangeespec">
+
+    <ion-title>Novo Cadastro</ion-title>
+    <ion-buttons end>
+      <button (click)="fechar()" ion-button icon-only color="royal">
+        Fechar
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="statuspage">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !nome.valid || (nome.dirty || nome.touched),'valid': nome.valid }">Nome *</ion-label>
+        <ion-input [(ngModel)]="cadastro.nome" #nome="ngModel" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !email.valid,'valid': email.valid }">Email *</ion-label>
+        <ion-input class="imput" [(ngModel)]="cadastro.email" #email="ngModel" type="email" email required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !telefone.valid,'valid': telefone.valid }">Telefone *</ion-label>
+        <ion-input class="imput" [(ngModel)]="cadastro.telefone" #telefone="ngModel" type="telefone" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !cpf.valid,'valid': cpf.valid }">CPF *</ion-label>
+        <ion-input class="imput" [(ngModel)]="cadastro.cpf_cnpj" maxlength="15" minlength="11" #cpf="ngModel" type="text" required></ion-input>
+      </ion-item>
+
+     
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !endereco.valid,'valid': endereco.valid }">Endereço *</ion-label>
+        <ion-input class="imput" [(ngModel)]="cadastro.endereco" #endereco="ngModel" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating [ngClass]="{'errovalid': !numero.valid,'valid': numero.valid }">Número *</ion-label>
+        <ion-input class="imput" [(ngModel)]="cadastro.numero" #numero="ngModel" type="numero" required></ion-input>
+      </ion-item>
+
+
+
+      <ion-item>
+        <ion-label class="labelselect" [ngClass]="{'errovalid': !cidade.valid,'valid': cidade.valid }">Cidade *</ion-label>
+        <ion-select required [(ngModel)]="cadastro.cod_bairro" #cidade="ngModel">
+
+          <ion-option value="{{item.id_bairros}}" [selected]="cadastro.cod_bairro == item.id_bairros" *ngFor="let item of bairros">
+            {{item.nome}}</ion-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="labelselect" [ngClass]="{'errovalid': !cidade.valid,'valid': cidade.valid }">Cidade *</ion-label>
+        <ion-select required [(ngModel)]="cadastro.cod_cidade" #cidade="ngModel">
+          <ion-option selected="true" value="{{cadastro.cod_cidade}}">Vitória da Conquista</ion-option>
+          <ion-option value="1" selected="false">Vitória da Conquista</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+    </ion-list>
+
+    <div class="buttons">
+      <button ion-button color="secondary" block (click)="salvar(cadastro)">Salvar Dados</button>
+
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "servicostore",
+  "app_id": "3aa1581b",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-title>Pedido</ion-title>
+    <ion-buttons end>
+      <button (click)="close()" ion-button icon-only color="royal">
+
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item (click)="openPedido(item)" *ngFor="let item of pedidos; let i=index">
+      <ion-thumbnail item-start>
+        <div class="itempedido" padding>Pedido <Br>#{{item.id_pedido}}</div>
+      </ion-thumbnail>
+      <h2>{{item.nome}}</h2>
+      <p>
+        <ion-icon name="ios-calendar-outline"></ion-icon> {{item.data | date: 'dd/MM/yyyy'}}</p>
+      <button ion-button clear item-end>Exibir</button>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
